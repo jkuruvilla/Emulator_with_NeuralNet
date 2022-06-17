@@ -10,7 +10,9 @@ h_lhs = np.asarray(h_lhs).astype('float32')
 import camb
 from camb import model, initialpower
 
-Npoints = 500
+import sys
+
+Npoints = int(sys.argv[1])
 
 kmin = 1e-4
 kmax = 15
@@ -38,5 +40,5 @@ for i in range(len(h_lhs)):
 
 input_pk = np.asarray(input_pk).astype('float32')
 
-with open('../data/input_pk_h0.npy', 'wb') as f:
+with open('../data/input_pk_h0_k'+str(Npoints)+'.npy', 'wb') as f:
     np.savez(f, H=h_lhs, k=kh, pk=input_pk)
